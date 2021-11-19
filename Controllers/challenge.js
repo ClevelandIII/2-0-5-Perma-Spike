@@ -18,3 +18,5 @@ const updateChallenge = async (req, res) => {
 const deleteChallenge = async (req, res) => {
   res.send("Delete Challenge");
 };
+
+module.exports = {getChallenge, getAllChallenge, createChallenge, updateChallenge, deleteChallenge}

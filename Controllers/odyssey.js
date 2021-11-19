@@ -18,3 +18,5 @@ const updateOdyssey = async (req, res) => {
 const deleteOdyssey = async (req, res) => {
   res.send("Delete Odyssey");
 };
+
+module.exports = {getAllOdyssey, getOdyssey, createOdyssey, updateOdyssey, deleteOdyssey}
