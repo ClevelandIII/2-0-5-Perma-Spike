@@ -44,7 +44,7 @@ app
 //Peck startup
 const startup = async () => {
   try {
-    await connection(process.env.local.MONGO_URL);
+    await connection(process.env.MONGO_URL);
     app.listen(port, () => console.log(`server is listening at port ${port}`));
   } catch (err) {
     console.log(err);
