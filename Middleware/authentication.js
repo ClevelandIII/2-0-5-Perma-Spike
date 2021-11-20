@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const {Unauth} = require('../error')
+const {Unauth} = require('../Error')
 require('dotenv').config
 
 const authenticationCheck = async (req, res, next) => {

@@ -6,6 +6,9 @@ require("express-async-errors");
 const connection = require('./DB/connect')
 
 //Make sure to add middleware, error handler and authcheck eventually
+const authenticationCheck = require("./Middleware/authentication");
+const errorHandler = require("./Middleware/error-handler");
+
 
 const challenge = require("./routes/challenge");
 const login = require("./routes/login");
@@ -37,9 +40,11 @@ app
   .get("/", (req, res) => {
     res.send("Hello");
   })
-  .use("/api/v1/challenge", challenge)
-  .use("/api/v1/login", login)
+  .use("/api/v1/challenge", authenticationCheck, challenge)
+  .use("/api/v1/login", authenticationCheck, login)
   .use("/api/v1/odyssey", odyssey);
+
+  // .use(errorHandler);
 
 //Peck startup
 const startup = async () => {
