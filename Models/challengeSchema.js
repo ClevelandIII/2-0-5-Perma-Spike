@@ -14,7 +14,7 @@ const challengeSchema = new mongoose.Schema (
         Difficulty: {
             type: String,
             default: "medium",
-            match: [["easy", "medium", "hard"], "Must provide a valid difficulty"]
+            enum: ["easy", "medium", "hard"]
         },
         Lives: {
             type: Number,

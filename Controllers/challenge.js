@@ -9,12 +9,9 @@ const getAllChallenge = async (req, res) => {
 };
 
 const createChallenge = async (req, res) => {
-  // res.send("New Challenge");
+  const challenge = await Challenge.create(req.body);
 
-  req.body.createdBy = req.user.userID;
-  const job = await Job.create(req.body);
-
-  res.status(StatusCodes.CREATED).json({ job });
+  res.status(StatusCodes.CREATED).json({ challenge });
 };
 
 const updateChallenge = async (req, res) => {
