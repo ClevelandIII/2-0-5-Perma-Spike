@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const odysseySchema = new mongoose.Schema (
+const OdysseySchema = new mongoose.Schema (
     {
         Name: {
             type: String,
@@ -450,4 +450,4 @@ const odysseySchema = new mongoose.Schema (
     }
 )
 
-module.exports = mongoose.model("challenge", challengeSchema)
+module.exports = mongoose.model("Odyssey", OdysseySchema)
