@@ -5,10 +5,7 @@ const getChallenge = async (req, res) => {
   res.send("Single Challenge");
 };
 const getAllChallenge = async (req, res) => {
-  const challenges = await Challenge.find({ createdBy: req.user.userID }).sort(
-    "created at"
-  );
-  res.status(StatusCodes.OK).json({ challenges, length: challenges.length });
+  res.send("All Challenges");
 };
 
 const createChallenge = async (req, res) => {
