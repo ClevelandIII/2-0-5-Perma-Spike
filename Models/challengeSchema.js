@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const challengeSchema = new mongoose.Schema({
+const ChallengeSchema = new mongoose.Schema({
   // createdBy: {
   //     type: mongoose.Types.ObjectId,
   //     ref: "User",
@@ -108,4 +108,4 @@ const challengeSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("challenge", challengeSchema);
+module.exports = mongoose.model("Challenge", ChallengeSchema);
