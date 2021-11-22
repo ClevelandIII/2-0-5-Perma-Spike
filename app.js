@@ -40,8 +40,8 @@ app
   .get("/", (req, res) => {
     res.send("Hello");
   })
-  .use("/api/v1/challenge", authenticationCheck, challenge)
-  .use("/api/v1/login", authenticationCheck, login)
+  .use("/api/v1/challenge", challenge)
+  .use("/api/v1/login", login)
   .use("/api/v1/odyssey", odyssey);
 
   // .use(errorHandler);
