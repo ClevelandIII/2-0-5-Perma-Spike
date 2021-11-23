@@ -5,15 +5,9 @@ require("dotenv").config();
 require("express-async-errors");
 const connection = require('./DB/connect')
 
-<<<<<<< HEAD
 //Make sure to add middleware, error handler and authcheck eventually
 const auth = require("./Middleware/authentication");
 const errorHandler = require("./Middleware/error-handler");
-=======
-//Make sure to add middleware, error handler and authcheck eventually, bottom two for example
-// const authenticationCheck = require("./Middleware/authentication");
-// const errorHandler = require("./Middleware/error-handler");
->>>>>>> 25d148a1f1fa8b54cc12eede41b2f7eff310fdda
 
 
 const challenge = require("./routes/challenge");
