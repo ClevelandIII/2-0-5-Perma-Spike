@@ -8,13 +8,14 @@ const getChallenge = async (req, res) => {
   const challenge = await Job.findOne({ createdBy: userID, _id: challengeID });
 
   if (!challenge) {
-    throw new NotFoundError(`No job with ${challengeID}`);
+    throw new NotFoundError(`${challengeID} not found`);
   }
 
   res.status(StatusCodes.OK).json({ challenge });
 };
 const getAllChallenge = async (req, res) => {
-  res.send("All Challenges");
+  const challenge = await Challenge.find({ createdBy: req.userID }).sort("created at");
+  res.status(StatusCodes.OK).json({ challenge, length: challenge.length });
 };
 
 const createChallenge = async (req, res) => {
