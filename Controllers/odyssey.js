@@ -38,7 +38,7 @@ const updateOdyssey = async (req, res) => {
     params: { id: challengeID },
   } = req;
 
-  const odyssey = await Challenge.findByIdAndUpdate(
+  const odyssey = await Odyssey.findByIdAndUpdate(
     { _id: odysseyID, createdBy: userID },
     req.body,
     { new: true, runValidators: true }
