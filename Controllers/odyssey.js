@@ -11,7 +11,7 @@ const getOdyssey = async (req, res) => {
     _id: odysseyID,
   });
 
-  if (!challenge) {
+  if (!odyssey) {
     throw new NotFoundError(`${odysseyID} not found!`);
   }
 
@@ -35,7 +35,7 @@ const updateOdyssey = async (req, res) => {
   const {
     body,
     user: { userID },
-    params: { id: challengeID },
+    params: { id: odysseyID },
   } = req;
 
   const odyssey = await Odyssey.findByIdAndUpdate(
