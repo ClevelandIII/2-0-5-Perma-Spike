@@ -9,9 +9,8 @@ const getAllChallenge = async (req, res) => {
 };
 
 const createChallenge = async (req, res) => {
-  // req.body.createdBy = req.user.userID;
   const challenge = await Challenge.create(req.body);
-
+  console.log(challenge)
   res.status(StatusCodes.CREATED).json({ challenge });
 };
 
