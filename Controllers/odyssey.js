@@ -1,22 +1,74 @@
 const { StatusCodes } = require("http-status-codes");
+const Odyssey = require("../Models/odysseySchema");
+const NotFoundError = require("../Error/notFound");
 
 const getOdyssey = async (req, res) => {
-  res.send("Odyssey");
+  const { userID } = req.user;
+  const { id: odysseyID } = req.params;
+
+  const odyssey = await Odyssey.findOne({
+    createdBy: userID,
+    _id: odysseyID,
+  });
+
+  if (!challenge) {
+    throw new NotFoundError(`${odysseyID} not found!`);
+  }
+
+  res.status(StatusCodes.OK).json({ odyssey });
 };
 const getAllOdyssey = async (req, res) => {
-  res.send("Every Odyssey");
+  const odyssey = await Odyssey.find({ createdBy: req.user.userID }).sort(
+    "created at"
+  );
+  res.status(StatusCodes.OK).json({ odyssey, length: odyssey.length });
 };
 
 const createOdyssey = async (req, res) => {
-  res.send("New Odyssey");
+  req.body.createdBy = req.user.userID;
+  const odyssey = await Odyssey.create(req.body);
+  console.log(odyssey);
+  res.status(StatusCodes.CREATED).json({ odyssey });
 };
 
 const updateOdyssey = async (req, res) => {
-  res.send("Update Odyssey");
+  const {
+    body,
+    user: { userID },
+    params: { id: challengeID },
+  } = req;
+
+  const odyssey = await Challenge.findByIdAndUpdate(
+    { _id: odysseyID, createdBy: userID },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!odyssey) {
+    throw new BadRequestError(`No new odyssey with ${odysseyID}`);
+  }
+
+  res.status(StatusCodes.OK).json({ odyssey });
 };
 
 const deleteOdyssey = async (req, res) => {
-  res.send("Delete Odyssey");
+  const {
+    params: { id: odysseyID },
+    user: { userID },
+  } = req;
+
+  const odyssey = await Odyssey.findOneAndRemove({
+    _id: odysseyID,
+    createdBy: userID,
+  });
+
+  res.status(StatusCodes.OK).json({ odyssey });
 };
 
-module.exports = {getAllOdyssey, getOdyssey, createOdyssey, updateOdyssey, deleteOdyssey}
+module.exports = {
+  getAllOdyssey,
+  getOdyssey,
+  createOdyssey,
+  updateOdyssey,
+  deleteOdyssey,
+};
