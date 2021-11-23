@@ -3,11 +3,9 @@ const Challenge = require("../Models/challengeSchema");
 const NotFoundError = require("../Error/notFound");
 
 const getChallenge = async (req, res) => {
-  const { userID } = req.user;
   const { id: challengeID } = req.params;
 
   const challenge = await Challenge.findOne({
-    createdBy: userID,
     _id: challengeID,
   });
 
@@ -19,9 +17,13 @@ const getChallenge = async (req, res) => {
 };
 
 const getAllChallenges = async (req, res) => {
-  const challenge = await Challenge.find({ createdBy: req.user.userID }).sort(
-    "created at"
-  );
+  let challenge = await Challenge.find({}).sort("created at");
+
+  challenge.map((single) => {
+    const { CreatedBy, Name, Map } = single;
+    return { CreatedBy, Name, Map };
+  });
+
   res.status(StatusCodes.OK).json({ challenge, length: challenge.length });
 };
 

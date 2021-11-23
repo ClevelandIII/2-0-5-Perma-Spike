@@ -3,24 +3,30 @@ const Odyssey = require("../Models/odysseySchema");
 const NotFoundError = require("../Error/notFound");
 
 const getOdyssey = async (req, res) => {
-  const { userID } = req.user;
   const { id: odysseyID } = req.params;
 
   const odyssey = await Odyssey.findOne({
-    createdBy: userID,
     _id: odysseyID,
   });
 
-  if (!challenge) {
+  if (!odyssey) {
     throw new NotFoundError(`${odysseyID} not found!`);
   }
 
   res.status(StatusCodes.OK).json({ odyssey });
 };
 const getAllOdyssey = async (req, res) => {
-  const odyssey = await Odyssey.find({ createdBy: req.user.userID }).sort(
-    "created at"
-  );
+  let odyssey = await Odyssey.find({}).sort("created at");
+
+  odyssey.map((single) => {
+    const {
+      CreatedBy,
+      Name,
+      Options: { extremeMode },
+    } = single;
+    return { CreatedBy, Name, extremeMode };
+  });
+
   res.status(StatusCodes.OK).json({ odyssey, length: odyssey.length });
 };
 
