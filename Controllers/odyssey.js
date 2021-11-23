@@ -41,7 +41,7 @@ const updateOdyssey = async (req, res) => {
   const {
     body,
     user: { userID },
-    params: { id: challengeID },
+    params: { id: odysseyID },
   } = req;
 
   const odyssey = await Odyssey.findByIdAndUpdate(
