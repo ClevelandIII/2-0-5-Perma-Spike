@@ -60,7 +60,7 @@ const updateChallenge = async (req, res) => {
   );
 
   if (!challenge) {
-    throw new BadRequestError(`no new job with ${jobID}`);
+    throw new BadRequestError(`no challenge with ${challengeID}`);
   }
 
   res.status(StatusCodes.OK).json({ challenge });
