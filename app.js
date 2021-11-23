@@ -6,7 +6,7 @@ require("express-async-errors");
 const connection = require('./DB/connect')
 
 //Make sure to add middleware, error handler and authcheck eventually
-const authenticationCheck = require("./Middleware/authentication");
+const auth = require("./Middleware/authentication");
 const errorHandler = require("./Middleware/error-handler");
 
 
@@ -40,9 +40,9 @@ app
   .get("/", (req, res) => {
     res.send("Hello");
   })
-  .use("/api/v1/challenge", challenge)
+  .use("/api/v1/challenge", auth, challenge)
   .use("/api/v1/login", login)
-  .use("/api/v1/odyssey", odyssey);
+  .use("/api/v1/odyssey", auth, odyssey);
 
   // .use(errorHandler);
 
