@@ -20,11 +20,12 @@ const getAllOdyssey = async (req, res) => {
 
   odyssey = odyssey.map((single) => {
     const {
+      _id,
       createdBy,
       Name,
       Options: { extremeMode },
     } = single;
-    return { createdBy, Name, extremeMode };
+    return { _id, createdBy, Name, extremeMode };
   });
 
   res.status(StatusCodes.OK).json({ odyssey, length: odyssey.length });
