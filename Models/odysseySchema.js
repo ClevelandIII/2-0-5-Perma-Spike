@@ -17,28 +17,25 @@ const OdysseySchema = new mongoose.Schema (
             default: 50
         },
         Options: {
-            type: Object,
             extremeMode: {
                 type: Boolean,
                 default: false
             }
         },
         Monkeys: {
-            type: Object,
             max: {
                 type: Number,
                 default: 20
             },
             banned: {
-                type: Array,
                 default: []
             }
         },
         Games: {
             type: Object,
-            required: [true, 'Must enter Games'],
-
+            required: true,
             gameOne: {
+                type: Object,
                 required: true,
                 Cash: {
                     type: Number,
@@ -54,7 +51,6 @@ const OdysseySchema = new mongoose.Schema (
                     enum: ["easy", "medium", "hard"]
                 },
                 options: {
-                    type: Object,
                     powers: {
                         type: Boolean,
                         default: true
@@ -122,6 +118,7 @@ const OdysseySchema = new mongoose.Schema (
                 },
             },
             gameTwo: {
+                type: Object,
                 required: true,
                 Cash: {
                     type: Number,
@@ -137,7 +134,6 @@ const OdysseySchema = new mongoose.Schema (
                     enum: ["easy", "medium", "hard"]
                 },
                 options: {
-                    type: Object,
                     powers: {
                         type: Boolean,
                         default: true
@@ -205,6 +201,7 @@ const OdysseySchema = new mongoose.Schema (
                 },
             },
             gameThree: {
+                type: Object,
                 required: true,
                 Cash: {
                     type: Number,
@@ -220,7 +217,6 @@ const OdysseySchema = new mongoose.Schema (
                     enum: ["easy", "medium", "hard"]
                 },
                 options: {
-                    type: Object,
                     powers: {
                         type: Boolean,
                         default: true
@@ -302,7 +298,6 @@ const OdysseySchema = new mongoose.Schema (
                     enum: ["easy", "medium", "hard"]
                 },
                 options: {
-                    type: Object,
                     powers: {
                         type: Boolean,
                         default: true
@@ -384,7 +379,6 @@ const OdysseySchema = new mongoose.Schema (
                     enum: ["easy", "medium", "hard"]
                 },
                 options: {
-                    type: Object,
                     powers: {
                         type: Boolean,
                         default: true

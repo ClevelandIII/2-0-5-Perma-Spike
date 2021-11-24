@@ -29,18 +29,16 @@ const ChallengeSchema = new mongoose.Schema({
     default: 650,
   },
   Monkeys: {
-    type: Object,
     max: {
         type: Number,
         default: 20
     },
     banned: {
-        type: Array,
         default: []
     }
 },
   Options: {
-    type: Object,
+  
     powers: {
       type: Boolean,
       default: true,
