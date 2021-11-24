@@ -20,18 +20,18 @@ const getAllOdyssey = async (req, res) => {
 
   odyssey = odyssey.map((single) => {
     const {
-      CreatedBy,
+      createdBy,
       Name,
       Options: { extremeMode },
     } = single;
-    return { CreatedBy, Name, extremeMode };
+    return { createdBy, Name, extremeMode };
   });
 
   res.status(StatusCodes.OK).json({ odyssey, length: odyssey.length });
 };
 
 const createOdyssey = async (req, res) => {
-  req.body.CreatedBy = req.user.userID;
+  req.body.createdBy = req.user.userID;
   const odyssey = await Odyssey.create(req.body);
   console.log(odyssey);
   res.status(StatusCodes.CREATED).json({ odyssey });
@@ -45,7 +45,7 @@ const updateOdyssey = async (req, res) => {
   } = req;
 
   const odyssey = await Odyssey.findByIdAndUpdate(
-    { _id: odysseyID, CreatedBy: userID },
+    { _id: odysseyID, createdBy: userID },
     req.body,
     { new: true, runValidators: true }
   );
@@ -65,7 +65,7 @@ const deleteOdyssey = async (req, res) => {
 
   const odyssey = await Odyssey.findOneAndRemove({
     _id: odysseyID,
-    CreatedBy: userID,
+    createdBy: userID,
   });
 
   res.status(StatusCodes.OK).json({ odyssey });

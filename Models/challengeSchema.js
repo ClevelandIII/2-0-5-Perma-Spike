@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ChallengeSchema = new mongoose.Schema({
-  CreatedBy: {
+  createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
       required: [true, "Please provide user"],

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const OdysseySchema = new mongoose.Schema (
     {
-        CreatedBy: {
+        createdBy: {
             type: mongoose.Types.ObjectId,
             ref: "User",
             required: [true, "Please provide user"],

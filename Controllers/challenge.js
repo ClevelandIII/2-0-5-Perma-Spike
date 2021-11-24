@@ -20,15 +20,15 @@ const getAllChallenges = async (req, res) => {
   let challenge = await Challenge.find({}).sort("created at");
 
   challenge.map((single) => {
-    const { CreatedBy, Name, Map } = single;
-    return { CreatedBy, Name, Map };
+    const { createdBy, Name, Map } = single;
+    return { createdBy, Name, Map };
   });
 
   res.status(StatusCodes.OK).json({ challenge, length: challenge.length });
 };
 
 const createChallenge = async (req, res) => {
-  req.body.CreatedBy = req.user.userID;
+  req.body.createdBy = req.user.userID;
   const challenge = await Challenge.create(req.body);
   console.log(challenge);
   res.status(StatusCodes.CREATED).json({ challenge });
@@ -56,7 +56,7 @@ const updateChallenge = async (req, res) => {
   // }
 
   const challenge = await Challenge.findByIdAndUpdate(
-    { _id: challengeID, CreatedBy: userID },
+    { _id: challengeID, createdBy: userID },
     req.body,
     { new: true, runValidators: true }
   );
@@ -76,7 +76,7 @@ const deleteChallenge = async (req, res) => {
 
   const challenge = await Challenge.findOneAndRemove({
     _id: challengeID,
-    CreatedBy: userID,
+    createdBy: userID,
   });
 
   res.status(StatusCodes.OK).json({ challenge });
